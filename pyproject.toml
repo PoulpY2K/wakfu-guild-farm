@@ -1,0 +1,22 @@
+[project]
+name = "wakfu-guild-farm"
+version = "0.1.0"
+description = "Wakfu Bot for farming guild points."
+authors = [
+    {name = "Jérémy Laurent",email = "poulpy2k@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+]
+
+[tool.poetry]
+package-mode = false
+packages = [{include = "wakfu_guild_farm", from = "src"}]
+
+[tool.poetry.scripts]
+launch = "wakfu_guild_farm:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
