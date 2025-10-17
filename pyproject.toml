@@ -11,11 +11,24 @@ dependencies = [
 ]
 
 [tool.poetry]
-package-mode = false
 packages = [{include = "wakfu_guild_farm", from = "src"}]
 
 [tool.poetry.scripts]
-launch = "wakfu_guild_farm:main"
+launch = "wakfu_guild_farm.__main__:run"
+
+[tool.coverage.run]
+branch = true
+omit = ["src/wakfu_guild_farm/__main__.py", "src/news/app.py"]
+source = ["news"]
+
+[tool.pytest.ini_options]
+pythonpath = "src"
+addopts = [
+    "--import-mode=importlib",
+]
+
+[tool.coverage.report]
+fail_under = 95
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
