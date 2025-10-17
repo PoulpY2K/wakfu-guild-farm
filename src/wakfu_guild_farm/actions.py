@@ -8,11 +8,14 @@ class Click(Enum):
     RIGHT_CLICK = 1
     LEFT_CLICK = 2
 
-
 def focus_wakfu():
     if sys.platform == "win32":
-        windows = pyautogui.getWindowsWithTitle("WAKFU")
-        windows = list(filter(lambda x: x.title == "WAKFU", windows))
+        windows = pyautogui.getAllWindows()
+        windows_title = pyautogui.getAllTitles()
+
+        wakfu_window_name = [name for name in windows_title if name.endswith("WAKFU")][0]
+
+        windows = list(filter(lambda x: x.title == wakfu_window_name, windows))
         windows[0].activate()
     else:
         import subprocess
@@ -44,22 +47,20 @@ def focus_wakfu():
 
     pyautogui.sleep(0.1)
 
-
-def interact_button(type_click: Click, x, y, sleep=0.0):
+def interact(type_click: Click, x, y, sleep=0.0):
     if type_click == Click.RIGHT_CLICK:
         # Click on the button
         pyautogui.rightClick(x, y)
     else:
         pyautogui.leftClick(x, y)
-    # Wait for action
+        # Wait for action
     pyautogui.sleep(sleep)
 
-
-def get_inside_room(rx, ry, lx, ly):
+def interact_button(rx, ry, lx, ly, sleep=0.0):
     # Right click hole
-    interact_button(Click.RIGHT_CLICK, rx, ry, sleep=0.2)
+    interact(Click.RIGHT_CLICK, rx, ry, 0.2)
     # Enter hole
-    interact_button(Click.LEFT_CLICK, lx, ly, sleep=2.0)
+    interact(Click.LEFT_CLICK, lx, ly, sleep)
 
 
 def press_key(key, sleep=0.0):
@@ -69,10 +70,8 @@ def press_key(key, sleep=0.0):
     pyautogui.sleep(sleep)
 
 
-def finish_battle(x, y):
+def finish_battle(x, y, sleep=0.0):
     # Close battle report
     pyautogui.press("esc")
     # Back out of the room
-    pyautogui.click(x, y)
-    # Sleep for a bit
-    pyautogui.sleep(3)
+    interact(Click.LEFT_CLICK, x, y, sleep)
