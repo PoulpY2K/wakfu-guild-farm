@@ -35,7 +35,7 @@ def focus_wakfu():
                 end repeat
             end repeat
         end tell
-    """ % ("WAKFU",)
+    """ % ("Poulpy - WAKFU",)
         (subprocess.Popen(
             "osascript",
             stdin=subprocess.PIPE,

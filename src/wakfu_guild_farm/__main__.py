@@ -1,12 +1,21 @@
 import logging
+import sys
 
 from wakfu_guild_farm.actions import focus_wakfu, interact, press_key, finish_battle, interact_button, Click
-from wakfu_guild_farm.constants import RIGHT_CLICK_HOLE_X, RIGHT_CLICK_HOLE_Y, LEFT_CLICK_HOLE_X, LEFT_CLICK_HOLE_Y, \
+if sys.platform == "win32":
+    from wakfu_guild_farm.constants_win32 import RIGHT_CLICK_HOLE_X, RIGHT_CLICK_HOLE_Y, LEFT_CLICK_HOLE_X, LEFT_CLICK_HOLE_Y, \
     RIGHT_CLICK_LARVAE_X, RIGHT_CLICK_LARVAE_Y, LEFT_CLICK_LARVAE_X, LEFT_CLICK_LARVAE_Y, \
     LEFT_CLICK_SPELL_X, LEFT_CLICK_SPELL_Y, \
     LEFT_CLICK_BATTLE_FIRST_LARVAE_X, LEFT_CLICK_BATTLE_FIRST_LARVAE_Y, \
     LEFT_CLICK_BATTLE_SECOND_LARVAE_X, LEFT_CLICK_BATTLE_SECOND_LARVAE_Y, \
     LEFT_CLICK_OUT_X, LEFT_CLICK_OUT_Y
+else:
+    from wakfu_guild_farm.constants_apple import RIGHT_CLICK_HOLE_X, RIGHT_CLICK_HOLE_Y, LEFT_CLICK_HOLE_X, LEFT_CLICK_HOLE_Y, \
+        RIGHT_CLICK_LARVAE_X, RIGHT_CLICK_LARVAE_Y, LEFT_CLICK_LARVAE_X, LEFT_CLICK_LARVAE_Y, \
+        LEFT_CLICK_SPELL_X, LEFT_CLICK_SPELL_Y, \
+        LEFT_CLICK_BATTLE_FIRST_LARVAE_X, LEFT_CLICK_BATTLE_FIRST_LARVAE_Y, \
+        LEFT_CLICK_BATTLE_SECOND_LARVAE_X, LEFT_CLICK_BATTLE_SECOND_LARVAE_Y, \
+        LEFT_CLICK_OUT_X, LEFT_CLICK_OUT_Y
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger('main')
